@@ -24,6 +24,7 @@ class DogsPage extends React.Component {
               if (dog.includes("webm") || dog.includes("mp4")) {
                 return (
                   <div className="dog" key={i}>
+                    <button className="star">⭑</button>
                     <video autoPlay muted width="100%" height="100%">
                       <source src={baseUrl + dog} type="video/mp4"></source>
                       Your browser does not support the video tag.
@@ -32,12 +33,10 @@ class DogsPage extends React.Component {
                 );
               } else {
                 return (
-                  <img
-                    className="dog"
-                    key={i}
-                    src={baseUrl + dog}
-                    alt={dog}
-                  ></img>
+                  <div className="dog">
+                    <button className="star">⭑</button>
+                    <img key={i} src={baseUrl + dog} alt={dog}></img>
+                  </div>
                 );
               }
             })}

@@ -2,3 +2,27 @@
   display: flex;
   flex-direction: column;
 }
+
+.star {
+  color: yellow;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: transparent;
+  right: -35px;
+  font-size: 25px;
+  background-color: #6495ed;
+  border: none;
+}
+
+.star:hover {
+  background-color: #3e8e41;
+  border: none;
+}
+
+.star:active {
+  background-color: #3e8e41;
+  transform: translateY(1px);
+  border: none;
+}
