@@ -16,30 +16,34 @@ class DogsPage extends React.Component {
   render() {
     return (
       <div className="dog-page">
-        <div className="dog-container">
-          {this.props.dogs.map((dog, i) => {
-            if (dog.includes("webm") || dog.includes("mp4")) {
-              return (
-                <div className="dog" key={i}>
-                  <video autoPlay muted width="100%" height="100%">
-                    <source src={baseUrl + dog} type="video/mp4"></source>
-                    Your browser does not support the video tag.
-                  </video>
-                </div>
-              );
-            } else {
-              return (
-                <img
-                  className="dog"
-                  key={i}
-                  src={baseUrl + dog}
-                  alt={dog}
-                ></img>
-              );
-            }
-          })}
-        </div>
-        <button onClick={() => this.loadDogs()}>REFRESH/NEXT</button>
+        {this.props.isLoading ? (
+          <Spinner />
+        ) : (
+          <div className="dog-container">
+            {this.props.dogs.map((dog, i) => {
+              if (dog.includes("webm") || dog.includes("mp4")) {
+                return (
+                  <div className="dog" key={i}>
+                    <video autoPlay muted width="100%" height="100%">
+                      <source src={baseUrl + dog} type="video/mp4"></source>
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                );
+              } else {
+                return (
+                  <img
+                    className="dog"
+                    key={i}
+                    src={baseUrl + dog}
+                    alt={dog}
+                  ></img>
+                );
+              }
+            })}
+          </div>
+        )}
+        ;<button onClick={() => this.loadDogs()}>REFRESH/NEXT</button>
       </div>
     );
   }
@@ -51,13 +55,30 @@ class DogsPage extends React.Component {
   }
 }
 
+const Spinner = () => {
+  return <div className="loader">Loading...</div>;
+};
+
+function generateRandomIndex(n) {
+  return Math.floor(Math.random() * (n - 1));
+}
+
 function mapStateToProps(state) {
+  console.log(state);
   return {
     ...state,
     dogs:
       state.dogs.length > 6
-        ? state.dogs.sort(() => Math.random() - Math.random()).slice(0, 6)
+        ? [
+            state.dogs[generateRandomIndex(state.dogs.length)],
+            state.dogs[generateRandomIndex(state.dogs.length)],
+            state.dogs[generateRandomIndex(state.dogs.length)],
+            state.dogs[generateRandomIndex(state.dogs.length)],
+            state.dogs[generateRandomIndex(state.dogs.length)],
+            state.dogs[generateRandomIndex(state.dogs.length)],
+          ]
         : state.dogs,
+    isLoading: state.apiCallsInProgress > 0,
   };
 }
 
