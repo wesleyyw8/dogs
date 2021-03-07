@@ -7,13 +7,12 @@
   color: yellow;
   display: block;
   position: absolute;
-  top: 0;
-  right: 0;
-  background-color: transparent;
-  right: -35px;
+  top: -1px;
+  right: -32px;
   font-size: 25px;
   background-color: #6495ed;
   border: none;
+  z-index: 2;
 }
 
 .star:hover {

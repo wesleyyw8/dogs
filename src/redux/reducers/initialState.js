@@ -2,4 +2,5 @@
 export default {
   dogs: [],
   apiCallsInProgress: 0,
+  favorites: [],
 };

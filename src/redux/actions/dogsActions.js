@@ -12,7 +12,9 @@ export function loadDogs() {
     return dogsApi
       .getDogs()
       .then((dogs) => {
-        dispatch(loadDogsSuccess(dogs));
+        dispatch(
+          loadDogsSuccess(dogs.length > 6 ? randomArrayImagens(dogs, 6) : dogs)
+        );
       })
       .catch((error) => {
         dispatch(apiCallError(error));
@@ -20,3 +22,15 @@ export function loadDogs() {
       });
   };
 }
+
+const randomArrayImagens = (dogs, n) => {
+  let result = [];
+  for (let i = 0; i < n; i = i + 1) {
+    result.push(dogs[generateRandomIndex(dogs.length)]);
+  }
+  return result;
+};
+
+const generateRandomIndex = (n) => {
+  return Math.floor(Math.random() * (n - 1));
+};
