@@ -26,7 +26,14 @@ class DogsPage extends React.Component {
               if (dog.includes("webm") || dog.includes("mp4")) {
                 return (
                   <div className="dog" key={i}>
-                    <button className="star">⭑</button>
+                    <button
+                      className={
+                        this.isInFavorites(dog) ? "star active" : "star"
+                      }
+                      onClick={() => this.toggleFavorite(dog)}
+                    >
+                      ⭑
+                    </button>
                     <video autoPlay muted width="100%" height="100%">
                       <source src={baseUrl + dog} type="video/mp4"></source>
                       Your browser does not support the video tag.
@@ -37,8 +44,10 @@ class DogsPage extends React.Component {
                 return (
                   <div className="dog" key={i}>
                     <button
-                      className="star"
-                      onClick={() => this.saveAsFavorite(dog)}
+                      className={
+                        this.isInFavorites(dog) ? "star active" : "star"
+                      }
+                      onClick={() => this.toggleFavorite(dog)}
                     >
                       ⭑
                     </button>
@@ -60,8 +69,17 @@ class DogsPage extends React.Component {
     });
   }
 
-  saveAsFavorite(dogId) {
-    this.props.actions.saveAsFavorite(dogId);
+  toggleFavorite(dogId) {
+    if (!this.isInFavorites(dogId)) {
+      this.props.actions.saveAsFavorite(dogId);
+    } else {
+      console.log("remove favorite");
+      this.props.actions.removeAsFavorite(dogId);
+    }
+  }
+
+  isInFavorites(dogId) {
+    return this.props.favorites.find((item) => item === dogId) !== undefined;
   }
 }
 
@@ -69,6 +87,7 @@ function mapStateToProps(state) {
   return {
     dogs: state.dogs,
     isLoading: state.apiCallsInProgress > 0,
+    favorites: state.favorites,
   };
 }
 
@@ -78,6 +97,10 @@ function mapDispatchToProps(dispatch) {
       loadDogs: bindActionCreators(dogsActions.loadDogs, dispatch),
       saveAsFavorite: bindActionCreators(
         favoriteActions.saveAsFavorite,
+        dispatch
+      ),
+      removeAsFavorite: bindActionCreators(
+        favoriteActions.removeAsFavorite,
         dispatch
       ),
     },

@@ -4,19 +4,19 @@
 }
 
 .star {
-  color: yellow;
   display: block;
   position: absolute;
   top: -1px;
   right: -32px;
   font-size: 25px;
+  color: yellow;
   background-color: #6495ed;
   border: none;
   z-index: 2;
 }
 
 .star:hover {
-  background-color: #3e8e41;
+  background-color: #c32ac9;
   border: none;
 }
 
@@ -24,4 +24,9 @@
   background-color: #3e8e41;
   transform: translateY(1px);
   border: none;
+}
+
+.star.active {
+  background-color: #c32ac9;
+  color: pink;
 }

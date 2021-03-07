@@ -13,7 +13,12 @@ class FavoritesPage extends React.Component {
             if (dog.includes("webm") || dog.includes("mp4")) {
               return (
                 <div className="dog" key={i}>
-                  <button className="star">⭑</button>
+                  <button
+                    className="star active"
+                    onClick={() => this.removeFromFavorites(dog)}
+                  >
+                    ⭑
+                  </button>
                   <video autoPlay muted width="100%" height="100%">
                     <source src={baseUrl + dog} type="video/mp4"></source>
                     Your browser does not support the video tag.
@@ -24,7 +29,7 @@ class FavoritesPage extends React.Component {
               return (
                 <div className="dog" key={i}>
                   <button
-                    className="star"
+                    className="star active"
                     onClick={() => this.removeFromFavorites(dog)}
                   >
                     ⭑
