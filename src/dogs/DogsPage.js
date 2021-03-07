@@ -13,7 +13,7 @@ class DogsPage extends React.Component {
   componentDidMount() {
     const { dogs, actions } = this.props;
     if (dogs.length === 0) {
-      loadDogs();
+      this.loadDogs();
     }
   }
 
@@ -43,17 +43,17 @@ class DogsPage extends React.Component {
             }
           })}
         </div>
-        <button onClick={loadDogs()}>REFRESH/NEXT</button>
+        <button onClick={this.loadDogs}>REFRESH/NEXT</button>
       </div>
     );
   }
-}
 
-function loadDogs() {
-  console.log("adhaudhuaw");
-  this.props.actions.loadDogs().catch((error) => {
-    alert("Loading courses failed" + error);
-  });
+  loadDogs() {
+    console.log("adhaudhuaw");
+    this.props.actions.loadDogs().catch((error) => {
+      alert("Loading courses failed" + error);
+    });
+  }
 }
 
 function mapStateToProps(state) {
