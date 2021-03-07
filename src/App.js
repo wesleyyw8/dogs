@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, Switch, NavLink } from "react-router-dom";
+import "./App.css";
+import DogsPage from "./dogs/DogsPage";
+import FavoritesPage from "./favorites/FavoritesPage";
 
 function App() {
+  const activeStyle = { color: "#F15B2A" };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-container">
+      <div className="header">
+        <NavLink to="/" activeStyle={activeStyle} exact>
+          Home
+        </NavLink>
+        {" | "}
+        <NavLink to="/favorites" activeStyle={activeStyle}>
+          Favorites
+        </NavLink>
+      </div>
+      <Switch>
+        <Route exact path="/" component={DogsPage} />
+        <Route path="/favorites" component={FavoritesPage} />
+      </Switch>
     </div>
   );
 }
