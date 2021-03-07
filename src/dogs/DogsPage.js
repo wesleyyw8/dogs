@@ -6,12 +6,8 @@ import { bindActionCreators } from "redux";
 import { baseUrl } from "./../api/dogsApi";
 
 class DogsPage extends React.Component {
-  constructor() {
-    super();
-    this.loadDogs.bind(this);
-  }
   componentDidMount() {
-    const { dogs, actions } = this.props;
+    const { dogs } = this.props;
     if (dogs.length === 0) {
       this.loadDogs();
     }
@@ -43,13 +39,12 @@ class DogsPage extends React.Component {
             }
           })}
         </div>
-        <button onClick={this.loadDogs}>REFRESH/NEXT</button>
+        <button onClick={() => this.loadDogs()}>REFRESH/NEXT</button>
       </div>
     );
   }
 
   loadDogs() {
-    console.log("adhaudhuaw");
     this.props.actions.loadDogs().catch((error) => {
       alert("Loading courses failed" + error);
     });
