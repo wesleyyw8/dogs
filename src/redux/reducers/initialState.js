@@ -2,5 +2,9 @@
 export default {
   dogs: [],
   apiCallsInProgress: 0,
-  favorites: [],
+  favorites:
+    localStorage.getItem("wes-dogs-favorites") &&
+    localStorage.getItem("wes-dogs-favorites") !== ""
+      ? localStorage.getItem("wes-dogs-favorites").split(",")
+      : [],
 };
