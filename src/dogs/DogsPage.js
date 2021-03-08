@@ -7,7 +7,7 @@ import { bindActionCreators } from "redux";
 import { baseUrl } from "./../api/dogsApi";
 import Spinner from "./../spinner/Spinner";
 
-class DogsPage extends React.Component {
+export class DogsPage extends React.Component {
   componentDidMount() {
     const { dogs } = this.props;
     if (dogs.length === 0) {

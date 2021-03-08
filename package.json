@@ -16,13 +16,16 @@
     "redux-thunk": "2.3.0"
   },
   "devDependencies": {
-    "redux-immutable-state-invariant": "2.1.0",
-    "redux-mock-store": "1.5.3"
+    "enzyme": "^3.11.0",
+    "redux-mock-store": "1.5.3",
+    "enzyme-adapter-react-16": "1.11.2",
+    "fetch-mock": "7.3.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:watch": "react-scripts test --watch",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
