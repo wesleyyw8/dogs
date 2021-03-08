@@ -25,7 +25,7 @@ export class DogsPage extends React.Component {
             {this.props.dogs.map((dog, i) => {
               if (dog.includes("webm") || dog.includes("mp4")) {
                 return (
-                  <div className="dog" key={i}>
+                  <div className="dog" key={i} data-testid="dog">
                     <button
                       className={
                         this.isInFavorites(dog) ? "star active" : "star"
@@ -42,7 +42,7 @@ export class DogsPage extends React.Component {
                 );
               } else {
                 return (
-                  <div className="dog" key={i}>
+                  <div className="dog" data-testid="dog" key={i}>
                     <button
                       className={
                         this.isInFavorites(dog) ? "star active" : "star"
